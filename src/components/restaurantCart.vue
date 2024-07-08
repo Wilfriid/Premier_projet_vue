@@ -1,0 +1,86 @@
+<template>
+  <div class="restaurant--card">
+    <div :style="changebackground" class="restaurant--image">
+    </div>
+   <div class="restaurant--information">
+    <div class="top">
+        <p class="name">
+            {{ info_restaurant.name }}
+        </p>
+        <p class="note"> 
+            <span>{{ info_restaurant.note }}</span>
+        </p>
+    </div>
+    <p class="time">{{ info_restaurant.drive_time }}</p>
+   </div>
+  </div>
+</template>
+
+<script>
+// import
+import { computed } from 'vue'
+
+export default {
+  name: "restaurantCard",
+  props: {
+    info_restaurant: Object
+  },
+  setup(props) {
+    const changebackground = computed( () => {
+      return {
+        backgroundImage: `url(${props.info_restaurant.image})`
+      }
+    })
+
+    // return
+    return {
+      changebackground
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+ .restaurant--card{
+    width: 32%;
+    height: 30vh;
+
+  p{
+    margin: 0px;
+ }
+}
+
+ .restaurant--image{
+   background-image: url("https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8zNzg4MDJiMC1jNTI4LTQ4MjktYjBiNS0wY2M2NDBkZjYzY2QuanBlZw==");
+   height: 70%;
+   background-size: cover;
+   background-position: center;
+   
+ }
+
+ .restaurant--information{
+    margin: 10px 0px;
+    .top{
+        display: flex;
+        // flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+
+        .note{
+            height: 30px;
+            width: 30px;
+            background: rgb(231, 227, 227);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            border-radius: 50%;
+        }
+    }
+
+    .time{
+        font-size: 0.9rem;
+    }
+ }
+
+</style>
